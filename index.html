@@ -3,328 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local Thread | Premium Activewear</title>
+    <title>Local Thread | Pro Sports & Gym Wear</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* --- BRANDING & VARS --- */
         :root {
-            --brand-color: #ccff00; /* Neon Volt */
-            --brand-dark: #0a0a0a;
-            --brand-gray: #1f1f1f;
-            --text-light: #f4f4f4;
-            --text-muted: #a0a0a0;
+            --accent: #ccff00; /* Neon Volt */
+            --dark: #0f0f0f;
+            --gray: #1a1a1a;
+            --light: #f0f0f0;
         }
 
         body {
-            background-color: var(--brand-dark);
-            color: var(--text-light);
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
+            background-color: var(--dark);
+            color: var(--light);
+            font-family: 'Inter', sans-serif;
+            padding-top: 70px; /* Space for fixed nav */
         }
 
-        h1, h2, h3, h4, h5, .navbar-brand, .btn {
-            font-family: 'Oswald', sans-serif;
+        h1, h2, h3, .nav-link, .btn {
+            font-family: 'Teko', sans-serif;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        a:hover { color: var(--brand-color); }
-
-        /* --- NAVBAR --- */
+        /* --- NAVIGATION --- */
         .navbar {
-            background-color: rgba(10, 10, 10, 0.95);
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid #333;
             padding: 15px 0;
         }
         .navbar-brand {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: white !important;
-            letter-spacing: 2px;
+            font-weight: 700;
         }
-        .navbar-brand span { color: var(--brand-color); }
+        .navbar-brand span { color: var(--accent); }
+        .nav-link { color: #ccc !important; font-size: 1.2rem; margin: 0 10px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--accent) !important; }
         
-        .nav-icon {
-            font-size: 1.2rem;
-            margin-left: 20px;
-            position: relative;
-            cursor: pointer;
-        }
-        .badge-count {
+        .cart-icon-wrapper { position: relative; cursor: pointer; }
+        .cart-badge {
             position: absolute;
-            top: -8px;
-            right: -10px;
-            background: var(--brand-color);
+            top: -5px; right: -8px;
+            background: var(--accent);
             color: black;
-            font-size: 0.7rem;
-            padding: 2px 5px;
             border-radius: 50%;
+            width: 18px; height: 18px;
+            font-size: 0.7rem;
+            display: flex; align-items: center; justify-content: center;
             font-weight: bold;
         }
 
-        /* --- PAGES / SECTIONS --- */
-        /* By default hide all pages, JS will show active one */
-        .page-section { display: none; min-height: 80vh; padding-top: 80px; }
-        .page-section.active { display: block; animation: fadeIn 0.5s; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         /* --- HERO SECTION --- */
-        .hero {
-            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+        .hero-section {
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1517466787929-bc90951d64b8?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            height: 90vh;
             display: flex;
             align-items: center;
-            padding-top: 0; 
+            justify-content: center;
+            text-align: center;
         }
-
-        /* --- BUTTONS --- */
-        .btn-brand {
-            background-color: var(--brand-color);
+        .hero-title { font-size: 5rem; line-height: 0.9; margin-bottom: 20px; }
+        .btn-accent {
+            background: var(--accent);
             color: black;
+            padding: 12px 35px;
+            font-weight: 700;
+            font-size: 1.2rem;
             border: none;
-            padding: 10px 30px;
-            font-weight: 700;
-            letter-spacing: 1px;
+            clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
+            transition: 0.3s;
         }
-        .btn-brand:hover { background-color: white; color: black; }
-        .btn-outline-brand {
-            border: 2px solid var(--brand-color);
-            color: var(--brand-color);
-            font-weight: 700;
-        }
-        .btn-outline-brand:hover { background-color: var(--brand-color); color: black; }
+        .btn-accent:hover { background: white; transform: scale(1.05); }
 
-        /* --- PRODUCT CARDS --- */
-        .product-card {
-            background: var(--brand-gray);
-            border: none;
-            transition: transform 0.3s;
+        /* --- CATEGORY BANNERS --- */
+        .cat-card {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
             cursor: pointer;
+            border: 1px solid #333;
         }
-        .product-card:hover { transform: translateY(-5px); }
-        .product-img {
-            height: 350px;
-            object-fit: cover;
-            width: 100%;
+        .cat-card img {
+            width: 100%; height: 100%; object-fit: cover; transition: 0.5s;
         }
-        .card-body { padding: 1.5rem; }
-        .price { color: var(--brand-color); font-size: 1.3rem; font-weight: bold; }
-        .category-tag { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; }
-
-        /* --- SIDEBAR FILTERS --- */
-        .filter-sidebar {
-            background: var(--brand-gray);
+        .cat-card:hover img { transform: scale(1.1); opacity: 0.7; }
+        .cat-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
             padding: 20px;
-            border-radius: 5px;
-        }
-        .form-check-input:checked {
-            background-color: var(--brand-color);
-            border-color: var(--brand-color);
+            background: linear-gradient(to top, black, transparent);
         }
 
-        /* --- CART & WISHLIST TABLES --- */
-        .table-dark {
-            --bs-table-bg: var(--brand-gray);
-            color: var(--text-light);
+        /* --- PRODUCTS --- */
+        .product-card {
+            background: var(--gray);
+            border: none;
+            transition: 0.3s;
+        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(204, 255, 0, 0.1); }
+        .product-img-container {
+            height: 320px;
+            overflow: hidden;
+            position: relative;
+        }
+        .product-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .badge-new {
+            position: absolute; top: 10px; left: 10px;
+            background: white; color: black;
+            padding: 2px 8px; font-weight: bold; font-size: 0.8rem;
         }
         
         /* --- FOOTER --- */
-        footer {
-            background-color: #000;
-            border-top: 1px solid #333;
-            padding: 50px 0;
-            margin-top: 50px;
-        }
+        footer { background: #050505; border-top: 1px solid #333; padding: 60px 0; margin-top: 80px; }
+        
+        /* --- UTILS --- */
+        .view-container { min-height: 100vh; }
+        .hidden { display: none !important; }
+        .fade-in { animation: fadeIn 0.4s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
     </style>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#" onclick="showPage('home')">LOCAL <span>THREAD</span></a>
-            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+            <a class="navbar-brand" href="#" onclick="router('home')">LOCAL <span>THREAD</span></a>
+            <button class="navbar-toggler bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link text-white" href="#" onclick="showPage('home')">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#" onclick="showPage('shop')">Shop All</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#" onclick="filterByCat('Men')">Men</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#" onclick="filterByCat('Women')">Women</a></li>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="router('home')">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="router('shop', 'all')">Shop All</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="router('shop', 'Jerseys')">Jerseys</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="router('shop', 'Tracksuits')">Tracksuits</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="router('shop', 'Accessories')">Socks & Gear</a></li>
                 </ul>
-                <div class="d-flex align-items-center">
-                    <div class="nav-icon" onclick="showPage('wishlist')">
-                        <i class="far fa-heart"></i>
-                        <span class="badge-count" id="wishlist-count">0</span>
-                    </div>
-                    <div class="nav-icon" onclick="showPage('cart')">
-                        <i class="fas fa-shopping-bag"></i>
-                        <span class="badge-count" id="cart-count">0</span>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="cart-icon-wrapper" onclick="toggleCart()">
+                        <i class="fas fa-shopping-bag fa-lg"></i>
+                        <span class="cart-badge" id="cart-count">0</span>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="page-section active hero">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1 class="display-1 fw-bold mb-4">TRAIN.<br>SWEAT.<br><span style="color:var(--brand-color)">EVOLVE.</span></h1>
-                    <p class="lead mb-4">Premium gym wear engineered for the dedicated. Local Thread combines aesthetic street style with high-performance fabric.</p>
-                    <button class="btn btn-brand btn-lg me-3" onclick="showPage('shop')">Shop Collection</button>
-                    <button class="btn btn-outline-light btn-lg" onclick="filterByCat('New Arrival')">New Drops</button>
+    <main id="app" class="view-container">
+        </main>
+
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="cartOffcanvas">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title">YOUR BAG</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+            <div id="cart-items" class="flex-grow-1">
+                <p class="text-center text-muted mt-5">Your bag is empty.</p>
+            </div>
+            <div class="border-top border-secondary pt-3 mt-3">
+                <div class="d-flex justify-content-between fs-4 fw-bold mb-3">
+                    <span>Total</span>
+                    <span style="color:var(--accent)" id="cart-total">$0.00</span>
                 </div>
+                <button class="btn btn-accent w-100" onclick="checkoutWhatsApp()">CHECKOUT via WHATSAPP</button>
             </div>
         </div>
-    </section>
-
-    <section id="shop" class="page-section">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-3 mb-4">
-                    <div class="filter-sidebar">
-                        <h4 class="mb-4">Filters</h4>
-                        
-                        <h6 class="mb-3">Gender</h6>
-                        <div class="form-check"><input class="form-check-input filter-check" type="checkbox" value="Men" checked> <label class="form-check-label">Men</label></div>
-                        <div class="form-check"><input class="form-check-input filter-check" type="checkbox" value="Women" checked> <label class="form-check-label">Women</label></div>
-                        <div class="form-check"><input class="form-check-input filter-check" type="checkbox" value="Boys"> <label class="form-check-label">Boys</label></div>
-                        <div class="form-check"><input class="form-check-input filter-check" type="checkbox" value="Girls"> <label class="form-check-label">Girls</label></div>
-
-                        <hr class="border-secondary my-4">
-
-                        <h6 class="mb-3">Category</h6>
-                        <div class="form-check"><input class="form-check-input filter-check" type="checkbox" value="Upper" checked> <label class="form-check-label">Upper Body</label></div>
-                        <div class="form-check"><input class="form-check-input filter-check" type="checkbox" value="Lower" checked> <label class="form-check-label">Lower Body</label></div>
-                        
-                        <button class="btn btn-brand w-100 mt-4" onclick="applyFilters()">Apply Filters</button>
-                    </div>
-                </div>
-
-                <div class="col-lg-9">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h2 id="shop-title">All Products</h2>
-                        <select class="form-select w-auto bg-dark text-white border-secondary">
-                            <option>Sort by: Featured</option>
-                            <option>Price: Low to High</option>
-                            <option>Price: High to Low</option>
-                        </select>
-                    </div>
-                    <div class="row g-4" id="product-grid">
-                        </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="product-details" class="page-section">
-        <div class="container py-5">
-            <button class="btn btn-outline-light mb-4" onclick="showPage('shop')"><i class="fas fa-arrow-left"></i> Back to Shop</button>
-            <div class="row" id="detail-container">
-                </div>
-        </div>
-    </section>
-
-    <section id="cart" class="page-section">
-        <div class="container py-5">
-            <h2 class="mb-4">Your Shopping Bag</h2>
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="table-responsive">
-                        <table class="table table-dark align-middle">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Size</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cart-table-body">
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="bg-dark p-4 border border-secondary">
-                        <h4>Order Summary</h4>
-                        <div class="d-flex justify-content-between my-3">
-                            <span>Subtotal</span>
-                            <span id="cart-subtotal">$0.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between my-3">
-                            <span>Shipping</span>
-                            <span>Free</span>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between my-3 fs-4 fw-bold">
-                            <span>Total</span>
-                            <span style="color:var(--brand-color)" id="cart-total">$0.00</span>
-                        </div>
-                        <button class="btn btn-brand w-100 py-3" onclick="alert('Proceeding to Checkout Gateway...')">PROCEED TO CHECKOUT</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="wishlist" class="page-section">
-        <div class="container py-5">
-            <h2 class="mb-4">My Wishlist</h2>
-            <div class="row g-4" id="wishlist-grid">
-                </div>
-        </div>
-    </section>
+    </div>
 
     <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h3 class="text-white">LOCAL <span style="color:var(--brand-color)">THREAD</span></h3>
-                    <p class="text-muted">Engineered for the modern athlete. Aesthetics meet performance.</p>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h3>LOCAL <span>THREAD</span></h3>
+                    <p class="text-muted">The intersection of performance and street style. Built for athletes, designed for life.</p>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <h5 class="text-white mb-3">Customer Care</h5>
-                    <ul class="list-unstyled text-muted">
-                        <li><a href="#">Shipping Policy</a></li>
-                        <li><a href="#">Returns & Exchanges</a></li>
-                        <li><a href="#">Size Guide</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                <div class="col-md-2">
+                    <h5 class="text-white mb-3">Shop</h5>
+                    <ul class="list-unstyled text-secondary">
+                        <li>New Arrivals</li>
+                        <li>Jerseys</li>
+                        <li>Tracksuits</li>
+                        <li>Socks</li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5 class="text-white mb-3">Support</h5>
+                    <ul class="list-unstyled text-secondary">
+                        <li>Track Order</li>
+                        <li>Returns</li>
+                        <li>Size Guide</li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-white mb-3">Join the Movement</h5>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Enter your email">
-                        <button class="btn btn-brand" type="button">SUBSCRIBE</button>
-                    </div>
-                    <div class="fs-4">
-                        <i class="fab fa-instagram me-3"></i>
-                        <i class="fab fa-tiktok me-3"></i>
-                        <i class="fab fa-youtube"></i>
+                    <h5 class="text-white mb-3">Stay in the loop</h5>
+                    <div class="input-group">
+                        <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="Enter email">
+                        <button class="btn btn-secondary">JOIN</button>
                     </div>
                 </div>
-            </div>
-            <div class="text-center text-muted mt-4 border-top border-secondary pt-3">
-                <small>&copy; 2025 Local Thread. All Rights Reserved.</small>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // --- 1. MOCK DATABASE ---
+        // --- 1. PRODUCT DATABASE (Jerseys, Tracksuits, Gym, Socks) ---
         const products = [
-            { id: 1, name: "Stealth Performance Hoodie", category: "Upper", gender: "Men", price: 55, img: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80", desc: "Lightweight, sweat-wicking hoodie for warmups." },
-            { id: 2, name: "Core Compression Leggings", category: "Lower", gender: "Women", price: 45, img: "https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?auto=format&fit=crop&w=800&q=80", desc: "High-waisted fit with phone pockets." },
-            { id: 3, name: "Oversized Pump
+            // JERSEYS
+            { id: 101, name: "Pro Court Basketball Jersey", category: "Jerseys", price: 45, img: "https://images.unsplash.com/photo-1519766304800-67f58027f5b8?q=80&w=800&auto=format&fit=crop", desc: "Breathable mesh fabric for high intensity play." },
+            { id: 102, name: "Striker Football Kit (Top)", category: "Jerseys", price: 50, img: "https://images.unsplash.com/photo-1518908336710-4e1cf6b1f586?q=80&w=800&auto=format&fit=crop", desc: "Professional grade soccer jersey. Sweat-wicking." },
+            { id: 103, name: "Retro Vibe Jersey", category: "Jerseys", price: 55, img: "https://images.unsplash.com/photo-1577212017184-80e393a5dac8?q=80&w=800&auto=format&fit=crop", desc: "90s inspired cut with modern materials." },
+            
+            // TRACKSUITS
+            { id: 201, name: "Stealth Tech Tracksuit", category: "Tracksuits", price: 85, img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop", desc: "Full zip jacket and tapered pants combo." },
+            { id: 202, name: "Warmup Nylon Set", category: "Tracksuits", price: 80, img: "https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop", desc: "Classic nylon feel, wind resistant." },
+
+            // GYM WEAR
+            { id: 301, name: "Heavy Lift Oversized Tee", category: "Gym Wear", price: 30, img: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800&auto=format&fit=crop", desc: "Cotton blend for pure comfort during lifts." },
+            { id: 302, name: "Compression Base Layer", category: "Gym Wear", price: 35, img: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800&auto=format&fit=crop", desc: "Keep muscles warm and supported." },
+
+            // ACCESSORIES
+            { id: 401, name: "Elite Performance Socks (3pk)", category: "Accessories", price: 18, img: "https://images.unsplash.com/photo-1586350977771-b3b0abd50f82?q=80&w=800&auto=format&fit=crop", desc: "Cushioned sole with arch support." },
+            { id: 402, name: "Grip Crew Socks", category: "Accessories", price: 12, img: "https://images.unsplash.com/photo-1552066344-2464c494e755?q=80&w=800&auto=format&fit=crop", desc: "Anti-slip pads for football and yoga." }
+        ];
+
+        let cart = [];
+
+        // --- 2. ROUTER (Handles Page Switches) ---
+        const app = document.getElementById('app');
+
+        function router(view, param = null) {
+            window.scrollTo(0,0);
+            if (view === 'home') renderHome();
+            else if (view === 'shop') renderShop(param);
+            else if (view === 'product') renderProductDetail(param);
+        }
+
+        // --- 3. VIEWS ---
+
+        // A. HOME PAGE (Long Scrollable)
+        function renderHome() {
+            app.innerHTML = `
+                <section class="hero-section fade-in">
+                    <div>
+                        <h1 class="hero-title">WE ARE<br><span style="color:var(--accent)">LOCAL THREAD</span></h1>
+                        <p class="lead mb-4">Elite Gear for Football, Basketball, & The Gym.</p>
+                        <button class="btn btn-accent" onclick="router('shop', 'all')">SHOP THE DROP</button>
+                    </div>
+                </section>
+
+                <section class="container py-5">
+                    <h2 class="mb-4 display-5">SHOP BY SPORT</h2>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="cat-card" onclick="router('shop', 'Jerseys')">
+                                <img src="https://images.unsplash.com/photo-1522778119026-d647f0565c6a?q=80&w=800&auto=format&fit=crop" alt="Football">
+                                <div class="cat-overlay"><h3>JERSEYS</h3></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="cat-card" onclick="router('shop', 'Tracksuits')">
+                                <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=800&auto=format&fit=crop" alt="Tracksuits">
+                                <div class="cat-overlay"><h3>TRACKSUITS</h3></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="cat-card" onclick="router('shop', 'Gym Wear')">
+                                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" alt="Gym">
+                                <div class="cat-overlay"><h3>GYM WEAR</h3></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="container py-5">
+                    <div class="d-flex justify-content-between align-items-end mb-4">
+                        <h2 class="display-6">TRENDING NOW</h2>
+                        <a href="#" class="text-white" onclick="router('shop', 'all')">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="row g-4">
+                        ${getTrendingProducts()}
+                    </div>
+                </section>
+
+                <section class="py-5 mt-5" style="background: var(--gray);">
+                    <div class="container text-center">
+                        <h2 class="mb-3">DON'T FORGET THE BASICS</h2>
+                        <p class="mb-4">Premium Socks & Accessories</p>
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-md-4">
+                                <img src="https://images.unsplash.com/photo-1586350977771-b3b0abd50f82?q=80&w=600&auto=format&fit=crop" class="img-fluid mb-3">
+                                <button class="btn btn-outline-light" onclick="router('shop', 'Accessories')">SHOP SOCKS</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // B. SHOP VIEW (Grid)
+        function renderShop(category) {
+            let filtered = (category === 'all') ? products : products.filter(p => p.category === category);
+            
+            let html = `
+                <div class="container py-5 fade-in">
+                    <h1 class="mb-4 display-4">${category === 'all' ? 'FULL CATALOG' : category.toUpperCase()}</h1>
+                    <div class="row g-4">
+            `;
+
+            if(filtered.length === 0) html += `<p>No products found in this category.</p>`;
+
+            filtered.forEach(p => {
+                html += `
+                    <div class="col-6 col-md-3">
+                        <div class="card product-card h-100" onclick="router('product', ${p.id})">
+                            <div class="product-img-container">
+                                <span class="badge-new">NEW</span>
+                                <img src="${p.img}" alt="${p.name}">
+                            </div>
+                            <div class="card-body p-3">
+                                <small class="text-muted">${p.category}</small>
+                                <h5 class="card-title text-white mt-1">${p.name}</h5>
+                                <p class="text-warning fw-bold">$${p.price}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div></div>`;
+            app.innerHTML = html;
+        }
+
+        // C. PRODUCT DETAIL VIEW
+        function renderProductDetail(id) {
+            const p = products.find(i => i.id === id);
+            app.innerHTML = `
+                <div class="container py-5 fade-in">
+                    <button class="btn btn-sm btn-outline-secondary mb-4" onclick="router('shop', 'all')">
+                        <i class="fas fa-arrow-left"></i> BACK TO SHOP
+                    </button>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <img src="${p.img}" class="img-fluid w-100 border border-secondary">
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-muted text-uppercase">${p.category}</h5>
+                            <h1 class="display-3 mb-3">${p.name}</h1>
+                            <h2 class="text-warning mb-4">$${p.price}</h2>
+                            <p class="lead text-light mb-4">${p.desc}</p>
+                            
+                            <div class="mb-4">
+                                <label class="mb-2">Select Size</label>
+                                <div class="btn-group w-100" role="group">
+                                    <input type="radio" class="btn-check" name="size" id="s" autocomplete="off">
+                                    <label class="btn btn-outline-light" for="s">S</label>
+                                    <input type="radio" class="btn-check" name="size" id="m" autocomplete="off" checked>
+                                    <label class="btn btn-outline-light" for="m">M</label>
+                                    <input type="radio" class="btn-check" name="size" id="l" autocomplete="off">
+                                    <label class="btn btn-outline-light" for="l">L</label>
+                                    <input type="radio" class="btn-check" name="size" id="xl" autocomplete="off">
+                                    <label class="btn btn-outline-light" for="xl">XL</label>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-accent btn-lg w-100 py-3" onclick="addToCart(${p.id})">
+                                ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- 4. HELPERS ---
+        function getTrendingProducts() {
+            // Just take first 4 products for demo
+            return products.slice(0, 4).map(p => `
+                <div class="col-6 col-md-3">
+                    <div class="card product-card h-100" onclick="router('product', ${p.id})">
+                        <div class="product-img-container">
+                            <img src="${p.img}">
+                        </div>
+                        <div class="card-body p-3">
+                            <h5 class="card-title text-white" style="font-size:1rem;">${p.name}</h5>
+                            <p class="text-warning">$${p.price}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- 5. CART LOGIC ---
+        const cartCanvas = new bootstrap.Offcanvas(document.getElementById('cartOffcanvas'));
+
+        function toggleCart() {
+            cartCanvas.show();
+        }
+
+        function addToCart(id) {
+            const p = products.find(i => i.id === id);
+            cart.push(p);
+            updateCartUI();
+            cartCanvas.show();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const container = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+            
+            if(cart.length === 0) {
+                container.innerHTML = '<p class="text-center text-muted mt-5">Your bag is empty.</p>';
+                totalEl.innerText = "$0.00";
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                total += item.price;
+                html += `
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom border-secondary">
+                        <div class="d-flex align-items-center">
+                            <img src="${item.img}" style="width:50px; height:50px; object-fit:cover; margin-right:10px;">
+                            <div>
+                                <h6 class="mb-0 text-white">${item.name}</h6>
+                                <small class="text-muted">$${item.price}</small>
+                            </div>
+                        </div>
+                        <button class="btn btn-sm text-danger" onclick="removeFromCart(${index})"><i class="fas fa-times"></i></button>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            totalEl.innerText = "$" + total.toFixed(2);
+        }
+
+        function checkoutWhatsApp() {
+            if(cart.length === 0) return alert("Cart is empty!");
+            
+            let message = "Hello Local Thread! I want to order:%0A";
+            let total = 0;
+            cart.forEach(item => {
+                message += `- ${item.name} ($${item.price})%0A`;
+                total += item.price;
+            });
+            message += `%0ATotal: $${total}`;
+            
+            // Opens WhatsApp with the message (Replace 1234567890 with your number)
+            window.open(`https://wa.me/1234567890?text=${message}`, '_blank');
+        }
+
+        // Initialize Home
+        router('home');
+
+    </script>
+</body>
+</html>
