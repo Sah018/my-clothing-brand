@@ -11,143 +11,159 @@
 
     <style>
         :root {
-            --brand-black: #0a0a0a;
+            --brand-black: #111111;
             --brand-gray: #f5f5f5;
-            --accent: #ccff00; /* Neon Volt */
-            --sale-red: #e63946;
+            --accent: #dfff00; /* Neon Volt */
+            --sale-red: #d32f2f;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: white;
+            background-color: #ffffff;
             color: var(--brand-black);
             overflow-x: hidden;
-            /* Padding for fixed header stack */
-            padding-top: 100px; 
+            padding-top: 104px; /* Space for Fixed Header */
         }
 
-        /* --- 1. FIXED HEADER STACK --- */
+        /* --- 1. HEADER STACK --- */
         .header-wrapper {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1030;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
 
-        /* PROMO BAR */
+        /* Promo Bar */
         .promo-bar {
             background-color: var(--brand-black);
             color: white;
             font-size: 11px;
             font-weight: 700;
-            text-align: center;
-            height: 36px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
-        /* NAVBAR */
+        /* Navbar */
         .navbar {
             background: rgba(255, 255, 255, 0.98);
-            border-bottom: 1px solid #e5e5e5;
             height: 64px;
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e5e5;
         }
         .navbar-brand {
             font-family: 'Teko', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
             color: black !important;
+            padding-bottom: 5px;
         }
         .nav-link {
             color: black !important;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 14px;
-            margin: 0 10px;
+            margin: 0 15px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
             position: relative;
             line-height: 64px;
             padding: 0 !important;
+            transition: color 0.2s;
         }
-        .nav-link:hover { color: var(--sale-red) !important; }
+        .nav-link:hover { color: #757575 !important; }
 
-        /* MEGA MENU (Desktop) */
-        .nav-item:hover .mega-menu { display: block; opacity: 1; transform: translateY(0); }
+        /* Mega Menu */
+        .nav-item:hover .mega-menu { display: block; opacity: 1; visibility: visible; }
         .mega-menu {
             position: absolute;
             top: 64px;
             left: 0;
-            width: 100vw; /* Full Width */
+            width: 100vw;
             background: white;
-            border-bottom: 1px solid #eee;
-            padding: 30px 0;
+            border-top: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 40px 0;
             display: none;
             opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.2s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
         }
-        .mega-list h6 { font-weight: 800; font-size: 13px; margin-bottom: 15px; letter-spacing: 1px; }
-        .mega-list a { display: block; color: #555; font-size: 14px; margin-bottom: 8px; text-decoration: none; transition: 0.2s; }
-        .mega-list a:hover { color: black; padding-left: 5px; }
+        .mega-list h6 { font-weight: 800; font-size: 14px; margin-bottom: 18px; letter-spacing: 0.5px; }
+        .mega-list a { display: block; color: #757575; font-size: 14px; margin-bottom: 10px; text-decoration: none; font-weight: 500; }
+        .mega-list a:hover { color: black; }
 
-        /* --- HERO SLIDER --- */
+        /* --- 2. HERO SLIDER --- */
         .carousel-item { height: 85vh; position: relative; }
-        .carousel-item img { object-fit: cover; height: 100%; width: 100%; filter: brightness(0.8); }
+        .carousel-item img { object-fit: cover; height: 100%; width: 100%; filter: brightness(0.85); }
         .hero-caption {
-            position: absolute; bottom: 15%; left: 5%; text-align: left; color: white;
-            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            position: absolute; bottom: 10%; left: 5%; text-align: left; color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            max-width: 600px;
         }
-        .hero-title { font-family: 'Teko'; font-size: 5rem; line-height: 0.9; text-transform: uppercase; margin-bottom: 15px; }
+        .hero-title { font-family: 'Teko'; font-size: 6rem; line-height: 0.85; text-transform: uppercase; margin-bottom: 20px; font-weight: 700; }
         .btn-brand {
-            background: white; color: black; padding: 12px 35px; border-radius: 0; font-weight: 800; border: none; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+            background: white; color: black; padding: 14px 40px; border-radius: 30px; font-weight: 700; border: none; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; font-size: 14px;
         }
-        .btn-brand:hover { background: var(--accent); color: black; transform: translateY(-2px); }
+        .btn-brand:hover { background: #e0e0e0; transform: scale(1.02); }
 
-        /* --- PRODUCT CARDS --- */
-        .product-card { border: none; cursor: pointer; transition: 0.3s; margin-bottom: 30px; }
-        .product-card:hover { transform: translateY(-5px); }
+        /* --- 3. PRODUCT CARDS --- */
+        .product-card { border: none; cursor: pointer; transition: 0.3s; background: transparent; }
+        .product-card:hover .img-wrapper img { transform: scale(1.05); }
         .img-wrapper {
-            position: relative; padding-bottom: 125%; /* 4:5 Ratio */
-            background: #f4f4f4; overflow: hidden; margin-bottom: 12px;
+            position: relative; padding-bottom: 125%; /* 4:5 Aspect Ratio (Industry Standard) */
+            background: #f6f6f6; overflow: hidden; margin-bottom: 15px; border-radius: 4px;
         }
         .img-wrapper img {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; /* Changed to contain for full product visibility */
+            background: #f6f6f6; /* Light gray bg for PNGs */
+            transition: transform 0.5s ease;
         }
         .badge-offer {
-            position: absolute; top: 10px; left: 10px; background: var(--brand-black); color: white;
-            font-size: 10px; font-weight: 700; padding: 4px 8px;
+            position: absolute; top: 12px; left: 12px; background: var(--brand-black); color: white;
+            font-size: 11px; font-weight: 700; padding: 5px 10px; z-index: 2;
         }
-        .p-name { font-weight: 700; font-size: 16px; margin-bottom: 2px; }
-        .p-cat { color: #777; font-size: 13px; margin-bottom: 5px; }
-        .p-price { font-weight: 600; }
-        .p-old-price { text-decoration: line-through; color: #999; margin-right: 8px; font-weight: 400; font-size: 14px; }
+        .p-name { font-weight: 600; font-size: 16px; margin-bottom: 4px; color: #111; }
+        .p-cat { color: #757575; font-size: 14px; margin-bottom: 6px; }
+        .p-price { font-weight: 600; font-size: 16px; }
+        .p-old-price { text-decoration: line-through; color: #9e9e9e; margin-right: 8px; font-weight: 400; font-size: 14px; }
 
-        /* --- SECTIONS --- */
-        .flash-section { background: black; color: white; padding: 60px 0; text-align: center; }
-        .timer-display { font-family: 'Teko'; font-size: 4rem; color: var(--accent); line-height: 1; margin: 20px 0; }
+        /* --- 4. SECTIONS --- */
+        .section-title { font-family: 'Teko'; font-size: 3rem; font-weight: 600; text-transform: uppercase; margin-bottom: 30px; }
         
+        .flash-section { background: black; color: white; padding: 80px 0; text-align: center; }
+        .timer-display { font-family: 'Teko'; font-size: 5rem; color: var(--accent); line-height: 1; margin: 30px 0; letter-spacing: 2px; }
+        
+        /* Banner Grid */
+        .banner-card { position: relative; height: 500px; overflow: hidden; cursor: pointer; }
+        .banner-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: brightness(0.7); }
+        .banner-card:hover img { transform: scale(1.03); filter: brightness(0.9); }
+        .banner-text { position: absolute; bottom: 40px; left: 40px; color: white; }
+
         /* --- UTILS --- */
-        .view-section { display: none; animation: fadeIn 0.4s; }
+        .view-section { display: none; animation: fadeIn 0.5s; }
         .active-section { display: block; }
-        @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+        @keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
         
         /* Mobile Tweaks */
         @media (max-width: 768px) {
-            body { padding-top: 100px; }
+            body { padding-top: 104px; }
             .hero-title { font-size: 3.5rem; }
-            .carousel-item { height: 65vh; }
+            .carousel-item { height: 60vh; }
             .timer-display { font-size: 3rem; }
             .navbar-collapse {
-                background: white; position: fixed; top: 100px; left: 0; width: 100%; height: auto; border-bottom: 1px solid #ddd; padding: 20px;
+                background: white; position: fixed; top: 104px; left: 0; width: 100%; border-bottom: 1px solid #ddd; padding: 20px; max-height: 80vh; overflow-y: auto;
             }
-            .nav-link { line-height: 40px; }
-            .mega-menu { display: none !important; } /* Simplify menu on mobile */
+            .nav-link { line-height: 40px; margin: 0; }
+            .mega-menu { position: static; display: none; opacity: 1; visibility: visible; padding: 10px 0; box-shadow: none; width: 100%; }
+            .nav-item.active .mega-menu { display: block; }
+            .banner-card { height: 300px; margin-bottom: 20px; }
         }
     </style>
 </head>
@@ -155,11 +171,11 @@
 
     <div class="header-wrapper">
         <div class="promo-bar">
-            <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">FREE SHIPPING ON ALL TEAM KITS</div>
-                    <div class="carousel-item">USE CODE 'PLAYER20' FOR 20% OFF</div>
-                    <div class="carousel-item">NEW SEASON JERSEYS ARE HERE</div>
+                    <div class="carousel-item active">FREE SHIPPING & RETURNS</div>
+                    <div class="carousel-item">EXTRA 20% OFF | USE CODE: PLAYER20</div>
+                    <div class="carousel-item">NEW SEASON KITS JUST LANDED</div>
                 </div>
             </div>
         </div>
@@ -168,10 +184,10 @@
             <div class="container-fluid px-lg-5">
                 <a class="navbar-brand" href="#" onclick="route('home')">LOCAL THREAD</a>
                 
-                <div class="d-flex align-items-center order-lg-3 gap-3">
+                <div class="d-flex align-items-center order-lg-3 gap-4">
                     <div class="position-relative" style="cursor:pointer" onclick="openCart()">
                         <i class="fas fa-shopping-bag fs-5"></i>
-                        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark" style="font-size:9px;">0</span>
+                        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark" style="font-size:10px;">0</span>
                     </div>
                     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
                         <span class="navbar-toggler-icon"></span>
@@ -188,32 +204,32 @@
                             <div class="mega-menu">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-3 offset-1">
+                                        <div class="col-lg-2 offset-lg-1">
                                             <div class="mega-list">
-                                                <h6>APPAREL</h6>
-                                                <a href="#">Team Jerseys</a>
-                                                <a href="#">Training Tops</a>
-                                                <a href="#">Trackpants</a>
-                                                <a href="#">Shorts</a>
+                                                <h6>CLOTHING</h6>
+                                                <a href="#" onclick="route('shop', 'Jersey')">Team Jerseys</a>
+                                                <a href="#" onclick="route('shop', 'Tracksuit')">Tracksuits</a>
+                                                <a href="#" onclick="route('shop', 'Shorts')">Performance Shorts</a>
+                                                <a href="#" onclick="route('shop', 'Training')">Compression</a>
                                             </div>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-lg-2">
                                             <div class="mega-list">
                                                 <h6>ACCESSORIES</h6>
-                                                <a href="#">Grip Socks</a>
-                                                <a href="#">Gym Bags</a>
-                                                <a href="#">Compression Gear</a>
+                                                <a href="#" onclick="route('shop', 'Gear')">Grip Socks</a>
+                                                <a href="#" onclick="route('shop', 'Gear')">Gym Bags</a>
+                                                <a href="#" onclick="route('shop', 'Gear')">Equipment</a>
                                             </div>
                                         </div>
-                                        <div class="col-4">
-                                            <img src="https://images.unsplash.com/photo-1522778119026-d647f0565c6a?q=80&w=400&auto=format&fit=crop" class="img-fluid rounded">
+                                        <div class="col-lg-4 offset-lg-1 d-none d-lg-block">
+                                            <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=600&auto=format&fit=crop" class="img-fluid rounded shadow-sm" alt="Menu Feature">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#" onclick="route('shop', 'Women')">Women</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" onclick="route('shop', 'Accessories')">Gear</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick="route('shop', 'Accessories')">Equipment</a></li>
                         <li class="nav-item"><a class="nav-link text-danger" href="#" onclick="route('shop', 'Sale')">Sale</a></li>
                     </ul>
                 </div>
@@ -230,19 +246,19 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://images.unsplash.com/photo-1610416892671-8935c1387d81?q=80&w=1920&auto=format&fit=crop" alt="Jersey">
+                    <img src="https://images.unsplash.com/photo-1577471488278-16eec37ffcc2?q=80&w=1920&auto=format&fit=crop" alt="Football Field">
                     <div class="hero-caption">
-                        <h2 class="hero-title">MATCH DAY<br>READY</h2>
-                        <p class="lead mb-4">Pro-grade kits engineered for the field.</p>
-                        <button class="btn btn-brand" onclick="route('shop', 'Men')">SHOP KITS</button>
+                        <h2 class="hero-title">MATCH DAY<br>DOMINANCE</h2>
+                        <p class="lead mb-4">Engineered for the 90th minute. High-performance kits for the elite.</p>
+                        <button class="btn btn-brand" onclick="route('shop', 'Men')">Shop The Collection</button>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1920&auto=format&fit=crop" alt="Training">
+                    <img src="https://images.unsplash.com/photo-1517466787929-bc90951d64b8?q=80&w=1920&auto=format&fit=crop" alt="Training">
                     <div class="hero-caption">
-                        <h2 class="hero-title">WINTER<br>TRAINING</h2>
-                        <p class="lead mb-4">Therma-fit tracksuits for early morning grinds.</p>
-                        <button class="btn btn-brand" onclick="route('shop', 'Sale')">SHOP SALE</button>
+                        <h2 class="hero-title">WINTER<br>TRAINING ARC</h2>
+                        <p class="lead mb-4">Therma-Fit layers to keep you grinding through the cold.</p>
+                        <button class="btn btn-brand" onclick="route('shop', 'Sale')">Explore Sale</button>
                     </div>
                 </div>
             </div>
@@ -250,39 +266,39 @@
 
         <section class="flash-section">
             <div class="container">
-                <h6 class="text-uppercase letter-spacing-2 mb-3 text-secondary">Limited Time Offer</h6>
-                <h3 class="display-6 fw-bold">EXTRA 20% OFF ON TRACKSUITS</h3>
-                <div class="timer-display" id="countdown">04 : 32 : 15</div>
-                <button class="btn btn-outline-light rounded-0 px-4 mt-3" onclick="route('shop', 'Sale')">VIEW OFFERS</button>
+                <h6 class="text-uppercase letter-spacing-2 mb-2 text-white-50">Members Access</h6>
+                <h3 class="display-6 fw-bold">FLASH SALE ENDS IN</h3>
+                <div class="timer-display" id="countdown">08 : 45 : 12</div>
+                <button class="btn btn-outline-light rounded-pill px-5 mt-2" onclick="route('shop', 'Sale')">GET 20% OFF</button>
             </div>
         </section>
 
         <section class="container py-5">
             <div class="d-flex justify-content-between align-items-end mb-4">
-                <h3 class="fw-bold m-0">FEATURED GEAR</h3>
-                <a href="#" class="text-dark fw-bold text-decoration-none" onclick="route('shop', 'all')">View All</a>
+                <h2 class="section-title m-0" style="font-size: 2rem;">Trending Gear</h2>
+                <a href="#" class="text-dark fw-bold text-decoration-none" onclick="route('shop', 'all')">Shop All <i class="fas fa-arrow-right ms-1"></i></a>
             </div>
             <div class="row" id="featuredGrid">
                 </div>
         </section>
 
         <section class="container pb-5">
-            <div class="row g-3">
+            <div class="row g-4">
                 <div class="col-md-6">
-                    <div class="position-relative" style="height:400px; cursor:pointer" onclick="route('shop', 'Men')">
-                        <img src="https://images.unsplash.com/photo-1522778119026-d647f0565c6a?q=80&w=800&auto=format&fit=crop" class="w-100 h-100 object-fit-cover" style="filter:brightness(0.7)">
-                        <div class="position-absolute bottom-0 start-0 p-5 text-white">
-                            <h2 class="fw-bold">TEAM KITS</h2>
-                            <button class="btn btn-light btn-sm fw-bold">SHOP NOW</button>
+                    <div class="banner-card" onclick="route('shop', 'Men')">
+                        <img src="https://images.unsplash.com/photo-1628779238951-be2c9f256f27?q=80&w=900&auto=format&fit=crop" alt="Jerseys">
+                        <div class="banner-text">
+                            <h2 class="fw-bold display-5">PRO KITS</h2>
+                            <button class="btn btn-light btn-sm fw-bold rounded-pill px-4 mt-2">SHOP NOW</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="position-relative" style="height:400px; cursor:pointer" onclick="route('shop', 'Accessories')">
-                        <img src="https://images.unsplash.com/photo-1556906781-9a412961d28c?q=80&w=800&auto=format&fit=crop" class="w-100 h-100 object-fit-cover" style="filter:brightness(0.7)">
-                        <div class="position-absolute bottom-0 start-0 p-5 text-white">
-                            <h2 class="fw-bold">ACCESSORIES</h2>
-                            <button class="btn btn-light btn-sm fw-bold">SHOP NOW</button>
+                    <div class="banner-card" onclick="route('shop', 'Accessories')">
+                        <img src="https://images.unsplash.com/photo-1515523110800-9415d13b84a8?q=80&w=900&auto=format&fit=crop" alt="Training Gear">
+                        <div class="banner-text">
+                            <h2 class="fw-bold display-5">TRAINING GEAR</h2>
+                            <button class="btn btn-light btn-sm fw-bold rounded-pill px-4 mt-2">SHOP NOW</button>
                         </div>
                     </div>
                 </div>
@@ -291,125 +307,146 @@
     </div>
 
     <div id="shopPage" class="view-section container py-5">
-        <div class="d-flex align-items-center mb-4 border-bottom pb-3">
-            <h2 class="fw-bold m-0" id="shopTitle">ALL PRODUCTS</h2>
+        <div class="d-flex align-items-center justify-content-between mb-5 border-bottom pb-3">
+            <h2 class="section-title m-0" id="shopTitle" style="font-size: 2.5rem;">ALL PRODUCTS</h2>
+            <button class="btn btn-outline-dark rounded-pill" onclick="route('home')">Back to Home</button>
         </div>
-        <div class="row" id="shopGrid">
+        <div class="row g-4" id="shopGrid">
             </div>
     </div>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas" style="width: 400px;">
         <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title fw-bold font-monospace">YOUR BAG</h5>
+            <h5 class="offcanvas-title fw-bold" style="font-family:'Teko'; font-size:1.8rem;">YOUR BAG</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
         </div>
-        <div class="offcanvas-body d-flex flex-column bg-light">
+        <div class="offcanvas-body d-flex flex-column bg-white">
             <div id="cartItems" class="flex-grow-1">
                 </div>
             
-            <div class="bg-white p-3 shadow-sm mt-3">
+            <div class="bg-light p-4 rounded mt-3">
                 <div class="input-group mb-3">
                     <input type="text" id="couponCode" class="form-control" placeholder="Promo Code">
                     <button class="btn btn-dark" onclick="applyCoupon()">APPLY</button>
                 </div>
-                <div class="d-flex justify-content-between mb-2">
+                <div class="d-flex justify-content-between mb-2 text-secondary">
                     <span>Subtotal</span>
                     <span id="subTotal">₹0</span>
                 </div>
-                <div class="d-flex justify-content-between mb-2 text-success">
+                <div class="d-flex justify-content-between mb-2 text-success fw-bold">
                     <span>Discount</span>
                     <span id="discountVal">- ₹0</span>
                 </div>
                 <hr>
-                <div class="d-flex justify-content-between fw-bold fs-5 mb-3">
+                <div class="d-flex justify-content-between fw-bold fs-4 mb-4">
                     <span>Total</span>
                     <span id="finalTotal">₹0</span>
                 </div>
-                <button class="btn btn-dark w-100 py-3 fw-bold" onclick="checkout()">CHECKOUT <i class="fab fa-whatsapp ms-2"></i></button>
+                <button class="btn btn-dark w-100 py-3 fw-bold rounded-pill" onclick="checkout()">CHECKOUT ON WHATSAPP <i class="fab fa-whatsapp ms-2"></i></button>
             </div>
         </div>
     </div>
 
-    <footer class="bg-black text-white pt-5 pb-3">
+    <footer class="bg-black text-white pt-5 pb-4">
         <div class="container">
-            <div class="row g-4 mb-4">
+            <div class="row g-4 mb-5">
                 <div class="col-md-4">
-                    <h3 class="fw-bold" style="font-family:'Teko'">LOCAL THREAD</h3>
-                    <p class="text-secondary small">Engineered for the Indian Athlete.</p>
+                    <h3 class="fw-bold" style="font-family:'Teko'; font-size: 2rem;">LOCAL THREAD</h3>
+                    <p class="text-secondary small">Engineered for the Indian Athlete. We bring professional grade gear to the local field.</p>
                 </div>
                 <div class="col-6 col-md-2">
-                    <h6 class="fw-bold text-light mb-3">SHOP</h6>
-                    <ul class="list-unstyled text-secondary small" style="line-height:2;">
-                        <li>Jerseys</li>
-                        <li>Tracksuits</li>
-                        <li>Accessories</li>
-                        <li>Sale</li>
+                    <h6 class="fw-bold text-white mb-3">SHOP</h6>
+                    <ul class="list-unstyled text-secondary small" style="line-height:2.2;">
+                        <li><a href="#" class="text-secondary text-decoration-none" onclick="route('shop','Jersey')">Jerseys</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none" onclick="route('shop','Tracksuit')">Tracksuits</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none" onclick="route('shop','Sale')">Sale</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-2">
-                    <h6 class="fw-bold text-light mb-3">HELP</h6>
-                    <ul class="list-unstyled text-secondary small" style="line-height:2;">
-                        <li>Shipping</li>
-                        <li>Returns</li>
+                    <h6 class="fw-bold text-white mb-3">SUPPORT</h6>
+                    <ul class="list-unstyled text-secondary small" style="line-height:2.2;">
+                        <li>Order Status</li>
+                        <li>Shipping & Returns</li>
                         <li>Size Guide</li>
-                        <li>Contact</li>
+                        <li>Contact Us</li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h6 class="fw-bold text-light mb-3">FOLLOW US</h6>
-                    <div class="d-flex gap-3 fs-5 text-secondary">
-                        <i class="fab fa-instagram hover-white"></i>
-                        <i class="fab fa-facebook hover-white"></i>
-                        <i class="fab fa-twitter hover-white"></i>
+                    <h6 class="fw-bold text-white mb-3">STAY CONNECTED</h6>
+                    <div class="d-flex gap-4 fs-5 text-secondary">
+                        <i class="fab fa-instagram text-white cursor-pointer"></i>
+                        <i class="fab fa-facebook text-white cursor-pointer"></i>
+                        <i class="fab fa-twitter text-white cursor-pointer"></i>
+                        <i class="fab fa-youtube text-white cursor-pointer"></i>
                     </div>
                 </div>
             </div>
-            <hr class="border-secondary">
-            <p class="text-center small text-secondary">&copy; 2025 Local Thread India.</p>
+            <hr class="border-secondary opacity-25">
+            <div class="d-flex justify-content-between text-secondary small pt-2">
+                <p>&copy; 2025 Local Thread India.</p>
+                <p>Privacy Policy | Terms of Sale</p>
+            </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // --- 1. DATA (NO SHOES, ONLY PLAYER GEAR) ---
+        // --- 1. PRODUCT DATABASE (Zero Missing Images) ---
         const products = [
-            { id: 1, name: "Pro Striker Jersey", cat: "Men", type: "Jersey", price: 899, old: 1299, img: "https://images.unsplash.com/photo-1577212017184-80e393a5dac8?q=80&w=800&auto=format&fit=crop", sale: true },
-            { id: 2, name: "Therma-Fit Trackpants", cat: "Men", type: "Tracksuit", price: 1499, old: 1999, img: "https://images.unsplash.com/photo-1552234994-66ba234fd567?q=80&w=800&auto=format&fit=crop", sale: false },
-            { id: 3, name: "Elite Compression Tee", cat: "Men", type: "Training", price: 799, old: null, img: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800&auto=format&fit=crop", sale: false },
-            { id: 4, name: "Full Match Day Kit", cat: "Men", type: "Kit", price: 1899, old: 2499, img: "https://images.unsplash.com/photo-1518908336710-4e1cf6b1f586?q=80&w=800&auto=format&fit=crop", sale: true },
-            { id: 5, name: "Grip Performance Socks", cat: "Accessories", type: "Gear", price: 399, old: null, img: "https://images.unsplash.com/photo-1586350977771-b3b0abd50f82?q=80&w=800&auto=format&fit=crop", sale: false },
-            { id: 6, name: "Tech Gym Hoodie", cat: "Women", type: "Tracksuit", price: 1999, old: 2599, img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop", sale: true },
-            { id: 7, name: "Athlete Gym Duffel", cat: "Accessories", type: "Gear", price: 1299, old: 1799, img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop", sale: false },
-            { id: 8, name: "Flex Training Shorts", cat: "Men", type: "Shorts", price: 699, old: null, img: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=800&auto=format&fit=crop", sale: false }
+            // 1. STRIKER JERSEY (Your Link)
+            { id: 101, name: "Pro Striker Jersey", cat: "Men", type: "Jersey", price: 899, old: 1299, img: "https://dev.aidanglobal.com/wp-content/uploads/2022/12/1.png", sale: true },
+            
+            // 2. THERMA-FIT PANTS (Your Link)
+            { id: 102, name: "Therma-Fit Trackpants", cat: "Men", type: "Tracksuit", price: 1499, old: 1999, img: "https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/755c8257-e7d6-4c5a-911f-5c82dd357d92/AS+M+NK+TF+PANT+TAPER.png", sale: false },
+            
+            // 3. COMPRESSION TEE (Your Link)
+            { id: 103, name: "Elite Compression Base", cat: "Men", type: "Training", price: 799, old: null, img: "https://www.elitesporteurope.com/wp-content/uploads/2021/07/imageProxy.jpg", sale: false },
+            
+            // 4. MATCH DAY KIT (Your Link)
+            { id: 104, name: "Full Match Day Kit", cat: "Men", type: "Kit", price: 1899, old: 2499, img: "https://t3.ftcdn.net/jpg/06/37/99/66/360_F_637996609_3XatTeGcw0UK72F4yc6YaCiLi0Z8DWEJ.jpg", sale: true },
+            
+            // 5. GRIP SOCKS (Unsplash High Quality)
+            { id: 105, name: "Pro Grip Socks (3-Pack)", cat: "Accessories", type: "Gear", price: 399, old: null, img: "https://images.unsplash.com/photo-1586350977771-b3b0abd50f82?q=80&w=800&auto=format&fit=crop", sale: false },
+            
+            // 6. GYM DUFFEL (Unsplash High Quality)
+            { id: 106, name: "Athlete Duffel Bag", cat: "Accessories", type: "Gear", price: 1299, old: 1799, img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop", sale: true },
+            
+            // 7. WOMEN'S TRACKSUIT (Unsplash High Quality)
+            { id: 107, name: "Tech Fleece Set", cat: "Women", type: "Tracksuit", price: 2199, old: 2699, img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop", sale: false },
+            
+            // 8. TRAINING SHORTS (Unsplash High Quality)
+            { id: 108, name: "Flex Training Shorts", cat: "Men", type: "Shorts", price: 699, old: null, img: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=800&auto=format&fit=crop", sale: false }
         ];
 
         let cart = [];
         let discount = 0;
         const cartCanvas = new bootstrap.Offcanvas(document.getElementById('cartCanvas'));
 
-        // --- 2. ROUTING ---
+        // --- 2. ROUTING & RENDERING ---
         function route(view, filter = null) {
             window.scrollTo(0, 0);
+            
+            // Hide all pages
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active-section'));
             
             if (view === 'home') {
                 document.getElementById('homePage').classList.add('active-section');
-                renderGrid(products.slice(0, 4), 'featuredGrid'); // Show top 4
+                // Render Top 4 for Home
+                renderGrid(products.slice(0, 4), 'featuredGrid');
             } else if (view === 'shop') {
                 document.getElementById('shopPage').classList.add('active-section');
-                let items = products;
                 
-                if(filter === 'Sale') items = products.filter(p => p.sale);
-                else if(filter && filter !== 'all') items = products.filter(p => p.cat === filter || p.type === filter);
+                let filtered = products;
+                if(filter === 'Sale') filtered = products.filter(p => p.sale);
+                else if(filter && filter !== 'all') filtered = products.filter(p => p.cat === filter || p.type === filter);
                 
                 document.getElementById('shopTitle').innerText = filter ? filter.toUpperCase() : "FULL CATALOG";
-                renderGrid(items, 'shopGrid');
+                renderGrid(filtered, 'shopGrid');
             }
         }
 
-        // --- 3. RENDER GRID ---
-        function renderGrid(items, targetId) {
-            const container = document.getElementById(targetId);
+        function renderGrid(items, elementId) {
+            const container = document.getElementById(elementId);
             if(items.length === 0) {
                 container.innerHTML = '<div class="col-12 text-center text-muted py-5">No products found.</div>';
                 return;
@@ -432,7 +469,7 @@
             `).join('');
         }
 
-        // --- 4. CART & CHECKOUT ---
+        // --- 3. CART OPERATIONS ---
         function openCart() { cartCanvas.show(); }
 
         function addToCart(id) {
@@ -442,13 +479,16 @@
             cartCanvas.show();
         }
 
-        function removeFromCart(i) { cart.splice(i, 1); updateCart(); }
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
 
         function applyCoupon() {
             const code = document.getElementById('couponCode').value.toUpperCase();
             if(code === 'PLAYER20') {
                 discount = 0.2;
-                alert("20% Discount Applied!");
+                alert("Coupon Applied: 20% OFF!");
                 updateCart();
             } else {
                 alert("Invalid Code");
@@ -468,13 +508,13 @@
             }
 
             container.innerHTML = cart.map((item, i) => `
-                <div class="d-flex gap-3 mb-3 border-bottom pb-3">
-                    <img src="${item.img}" style="width:70px; height:70px; object-fit:cover;">
+                <div class="d-flex gap-3 mb-3 border-bottom pb-3 align-items-center">
+                    <img src="${item.img}" style="width:70px; height:70px; object-fit:contain; border:1px solid #f0f0f0; padding:5px;">
                     <div class="flex-grow-1">
-                        <div class="fw-bold small">${item.name}</div>
-                        <div class="text-muted small">₹${item.price}</div>
+                        <div class="fw-bold text-dark">${item.name}</div>
+                        <div class="text-secondary small">₹${item.price}</div>
                     </div>
-                    <button class="btn btn-sm text-danger align-self-start" onclick="removeFromCart(${i})"><i class="fas fa-times"></i></button>
+                    <button class="btn btn-sm text-danger" onclick="removeFromCart(${i})"><i class="fas fa-trash"></i></button>
                 </div>
             `).join('');
 
@@ -487,14 +527,14 @@
 
         function checkout() {
             if(cart.length === 0) return;
-            let msg = "Hi Local Thread, I want to order:%0A";
+            let msg = "Hi Local Thread! I would like to order:%0A";
             cart.forEach(i => msg += `- ${i.name} (₹${i.price})%0A`);
             const total = document.getElementById('finalTotal').innerText;
-            msg += `%0A*Total Amount: ${total}*`;
+            msg += `%0A*Total to Pay: ${total}*`;
             window.open(`https://wa.me/919999999999?text=${msg}`, '_blank');
         }
 
-        // --- 5. TIMER ---
+        // --- 4. TIMER ---
         setInterval(() => {
             const d = new Date();
             const h = 23 - d.getHours();
