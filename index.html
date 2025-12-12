@@ -99,7 +99,7 @@
         .mega-list a { display: block; color: #757575; font-size: 14px; margin-bottom: 10px; text-decoration: none; font-weight: 500; }
         .mega-list a:hover { color: black; }
         
-        /* MEGA MENU IMAGE STYLING */
+        /* Mega Menu Image */
         .menu-img-container {
             width: 100%;
             height: 250px;
@@ -111,20 +111,20 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.9);
+            filter: brightness(0.8);
             transition: 0.5s;
         }
-        .menu-img-container:hover img { transform: scale(1.05); }
+        .menu-img-container:hover img { transform: scale(1.05); filter: brightness(1); }
         .menu-img-caption {
             position: absolute; bottom: 20px; left: 20px; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
 
         /* --- 2. HERO SLIDER --- */
         .carousel-item { height: 85vh; position: relative; }
-        .carousel-item img { object-fit: cover; height: 100%; width: 100%; filter: brightness(0.85); }
+        .carousel-item img { object-fit: cover; height: 100%; width: 100%; filter: brightness(0.7); }
         .hero-caption {
             position: absolute; bottom: 10%; left: 5%; text-align: left; color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 20px rgba(0,0,0,0.6);
             max-width: 600px;
         }
         .hero-title { font-family: 'Teko'; font-size: 6rem; line-height: 0.85; text-transform: uppercase; margin-bottom: 20px; font-weight: 700; }
@@ -137,7 +137,7 @@
         .product-card { border: none; cursor: pointer; transition: 0.3s; background: transparent; }
         .product-card:hover .img-wrapper img { transform: scale(1.05); }
         .img-wrapper {
-            position: relative; padding-bottom: 125%; /* 4:5 Aspect Ratio (Industry Standard) */
+            position: relative; padding-bottom: 125%; /* 4:5 Aspect Ratio */
             background: #f6f6f6; overflow: hidden; margin-bottom: 15px; border-radius: 4px;
         }
         .img-wrapper img {
@@ -162,9 +162,9 @@
         
         /* Banner Grid */
         .banner-card { position: relative; height: 500px; overflow: hidden; cursor: pointer; }
-        .banner-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: brightness(0.7); }
-        .banner-card:hover img { transform: scale(1.03); filter: brightness(0.9); }
-        .banner-text { position: absolute; bottom: 40px; left: 40px; color: white; }
+        .banner-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: brightness(0.8); }
+        .banner-card:hover img { transform: scale(1.03); filter: brightness(1); }
+        .banner-text { position: absolute; bottom: 40px; left: 40px; color: white; z-index: 2; }
 
         /* --- UTILS --- */
         .view-section { display: none; animation: fadeIn 0.5s; }
@@ -281,7 +281,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1517466787929-bc90951d64b8?q=80&w=1920&auto=format&fit=crop" alt="Training">
+                    <img src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=1920&auto=format&fit=crop" alt="Training">
                     <div class="hero-caption">
                         <h2 class="hero-title">WINTER<br>TRAINING ARC</h2>
                         <p class="lead mb-4">Therma-Fit layers to keep you grinding through the cold.</p>
@@ -313,7 +313,7 @@
             <div class="row g-4">
                 <div class="col-md-6">
                     <div class="banner-card" onclick="route('shop', 'Men')">
-                        <img src="https://images.unsplash.com/photo-1628779238951-be2c9f256f27?q=80&w=900&auto=format&fit=crop" alt="Jerseys">
+                        <img src="https://as2.ftcdn.net/v2/jpg/04/96/88/03/1000_F_496880323_o1lo8LqdsRb5ndAuIlxKcUjHMfo2qjr9.jpg" alt="Pro Kits" style="object-fit: cover; object-position: center;">
                         <div class="banner-text">
                             <h2 class="fw-bold display-5">PRO KITS</h2>
                             <button class="btn btn-light btn-sm fw-bold rounded-pill px-4 mt-2">SHOP NOW</button>
@@ -420,7 +420,7 @@
     <script>
         // --- 1. PRODUCT DATABASE ---
         const products = [
-            // 1. STRIKER JERSEY (UPDATED TO YOUR LINK)
+            // 1. STRIKER JERSEY
             { id: 101, name: "Pro Striker Jersey", cat: "Men", type: "Jersey", price: 899, old: 1299, img: "https://as2.ftcdn.net/v2/jpg/04/96/88/03/1000_F_496880323_o1lo8LqdsRb5ndAuIlxKcUjHMfo2qjr9.jpg", sale: true },
             
             // 2. THERMA-FIT PANTS (Your Link)
@@ -441,7 +441,7 @@
             // 7. WOMEN'S TRACKSUIT (High Quality)
             { id: 107, name: "Tech Fleece Set", cat: "Women", type: "Tracksuit", price: 2199, old: 2699, img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop", sale: false },
             
-            // 8. TRAINING SHORTS (UPDATED TO YOUR LINK)
+            // 8. TRAINING SHORTS (UPDATED: Your Flex Shorts Link)
             { id: 108, name: "Flex Training Shorts", cat: "Men", type: "Shorts", price: 699, old: null, img: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQuGqyB9NNdXzb5C3eOI74fBIhY_cFqgxpP5V_I4TcO_0edMFXIOk-Rc-asoYuOBNHM5u0GcE5d0a5kczWBsHgtR19f4nzQiNRnQkMZv2fHsvebCDNoEQTV", sale: false }
         ];
 
